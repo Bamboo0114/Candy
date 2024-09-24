@@ -1,0 +1,31 @@
+class LinearModel:
+    def __init__(self):
+        self.k = 0
+        self.b = 0
+    def fit(self, x_train, y_train):
+        self.k = (y_train[0]-y_train[1])/(x_train[0]-x_train[1])
+        self.b = y_train[0]-x_train[0]*self.k
+        return
+    def predict(self, x_test):
+        y_test = self.k*x_test+self.b
+        return y_test
+def main():
+    s = input("Input x1 y1 x2 y2: ")
+    slist = s.split()
+    X = []
+    Y = []
+    X.append(eval(slist[0]))
+    Y.append(eval(slist[1]))
+    X.append(eval(slist[2]))
+    Y.append(eval(slist[3]))
+
+    lm = LinearModel()
+    lm.fit(X,Y)
+    print("Trainning result:k=",lm.k,", b=",lm.b)
+
+    x = eval(input("Input X: "))
+    y =lm.predict(x)
+    print("Predict result:x=",x,"平米, y:",y,"万元")
+    return
+
+main()
